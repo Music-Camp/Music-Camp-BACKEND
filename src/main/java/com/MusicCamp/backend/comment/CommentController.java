@@ -34,4 +34,10 @@ public class CommentController {
         List<CommentAllResDto> commentAllResDtoList = commentService.getAll(postId);
         return BaseResponse.success(commentAllResDtoList);
     }
+
+    @DeleteMapping("comment/{commentId}")
+    public BaseResponse<Void> deleteComment(@PathVariable Long commentId){
+        commentService.deleteComment(commentId);
+        return BaseResponse.success();
+    }
 }
