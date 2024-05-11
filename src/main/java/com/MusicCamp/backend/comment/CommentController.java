@@ -5,6 +5,7 @@ import com.MusicCamp.backend.comment.dto.CommentAllResDto;
 import com.MusicCamp.backend.comment.dto.CommentCreateReqDto;
 import com.MusicCamp.backend.comment.dto.CommentUpdateReqDto;
 import com.MusicCamp.backend.config.BaseResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,8 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/music")
+@Tag(name = "CommentController",
+        description = "게시판 내 댓글 관련 기능을 담당합니다. path : localhost:8080/music/comment로 시작합니다.")
 public class CommentController {
 
     private final CommentService commentService;
