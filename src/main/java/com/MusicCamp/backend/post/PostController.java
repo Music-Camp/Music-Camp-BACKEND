@@ -2,11 +2,14 @@ package com.MusicCamp.backend.post;
 
 
 import com.MusicCamp.backend.config.BaseResponse;
+import com.MusicCamp.backend.post.dto.PostAllResDto;
 import com.MusicCamp.backend.post.dto.PostCreateReqDto;
 import com.MusicCamp.backend.post.dto.PostUpdateReqDto;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,9 +25,14 @@ public class PostController {
     }
 
     @PutMapping("/post")
-    public  BaseResponse<Void> updatePost(@PathVariable Long postId,PostUpdateReqDto postUpdateReqDto){
+    public BaseResponse<Void> updatePost(@PathVariable Long postId,PostUpdateReqDto postUpdateReqDto){
         postService.updatePost(postId,postUpdateReqDto);
         return BaseResponse.success();
     }
 
+    @GetMapping("/post")
+    public BaseResponse<List<PostAllResDto>> getAllPost(){
+        List<PostAllResDto> postAllResDtosList = postService.getAllPost();
+        return BaseResponse.success(postAllResDtosList);
+    }
 }

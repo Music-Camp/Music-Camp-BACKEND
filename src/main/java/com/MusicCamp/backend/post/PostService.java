@@ -1,5 +1,6 @@
 package com.MusicCamp.backend.post;
 
+import com.MusicCamp.backend.post.dto.PostAllResDto;
 import com.MusicCamp.backend.post.dto.PostCreateReqDto;
 import com.MusicCamp.backend.post.dto.PostUpdateReqDto;
 import com.MusicCamp.backend.user.User;
@@ -7,6 +8,8 @@ import com.MusicCamp.backend.user.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -26,5 +29,11 @@ public class PostService {
     public void updatePost(Long postId,PostUpdateReqDto postUpdateReqDto) {
         Post post = postRepository.findById(postId).get();
         post.modifyPost(postUpdateReqDto);
+    }
+
+    public List<PostAllResDto> getAllPost() {
+        List<Post> allPostList = postRepository.findAll();
+        List<PostAllResDto> postAllResDtosList = allPostList.stream().map((eachPost) -> PostAllResDto.of(eachPost)).toList();
+        return postAllResDtosList;
     }
 }
