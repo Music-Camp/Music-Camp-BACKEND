@@ -20,13 +20,13 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/post")
-    public BaseResponse<Void> createPost(@PathVariable PostCreateReqDto postCreateReqDto){
+    public BaseResponse<Void> createPost(@RequestBody PostCreateReqDto postCreateReqDto){
         postService.createPost(postCreateReqDto);
         return BaseResponse.success();
     }
 
     @PutMapping("/post/{postId}")
-    public BaseResponse<Void> updatePost(@PathVariable Long postId,PostUpdateReqDto postUpdateReqDto){
+    public BaseResponse<Void> updatePost(@PathVariable Long postId,@RequestBody PostUpdateReqDto postUpdateReqDto){
         postService.updatePost(postId,postUpdateReqDto);
         return BaseResponse.success();
     }
