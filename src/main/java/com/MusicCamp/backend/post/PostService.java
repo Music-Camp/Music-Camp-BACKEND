@@ -1,6 +1,7 @@
 package com.MusicCamp.backend.post;
 
 import com.MusicCamp.backend.post.dto.PostCreateReqDto;
+import com.MusicCamp.backend.post.dto.PostUpdateReqDto;
 import com.MusicCamp.backend.user.User;
 import com.MusicCamp.backend.user.UserRepository;
 import jakarta.transaction.Transactional;
@@ -22,4 +23,8 @@ public class PostService {
         postRepository.save(post);
     }
 
+    public void updatePost(Long postId,PostUpdateReqDto postUpdateReqDto) {
+        Post post = postRepository.findById(postId).get();
+        post.modifyPost(postUpdateReqDto);
+    }
 }
