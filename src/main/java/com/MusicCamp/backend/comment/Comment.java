@@ -1,5 +1,7 @@
 package com.MusicCamp.backend.comment;
+import com.MusicCamp.backend.comment.dto.CommentCreateReqDto;
 import com.MusicCamp.backend.post.Post;
+import com.MusicCamp.backend.post.dto.PostCreateReqDto;
 import com.MusicCamp.backend.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -32,5 +34,10 @@ public class Comment {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
+    public Comment(User user, Post post, CommentCreateReqDto commentCreateReqDto){
+       this.user=user;
+       this.post=post;
+       this.content=commentCreateReqDto.getContent();
+    }
 
 }
