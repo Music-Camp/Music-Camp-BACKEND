@@ -1,8 +1,11 @@
 package com.MusicCamp.backend.post;
 import com.MusicCamp.backend.comment.Comment;
 import com.MusicCamp.backend.likes.Likes;
+import com.MusicCamp.backend.post.dto.PostCreateReqDto;
+import com.MusicCamp.backend.post.dto.PostUpdateReqDto;
 import com.MusicCamp.backend.user.User;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -44,5 +47,18 @@ public class Post {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     List<Likes> likesList = new ArrayList<>();
+
+    public Post(User user, PostCreateReqDto postCreateReqDto) {
+        this.user = user;
+        this.title = postCreateReqDto.getTitle();
+        this.content = postCreateReqDto.getContent();
+        this.imageUrl = postCreateReqDto.getImageUrl();
+    }
+
+    public void modifyPost(PostUpdateReqDto postUpdateReqDto){
+        this.title=postUpdateReqDto.getTitle();
+        this.content=postUpdateReqDto.getContent();
+        this.imageUrl=postUpdateReqDto.getImageUrl();
+    }
 
 }
