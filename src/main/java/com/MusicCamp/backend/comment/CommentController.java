@@ -1,11 +1,14 @@
 package com.MusicCamp.backend.comment;
 
 
+import com.MusicCamp.backend.comment.dto.CommentAllResDto;
 import com.MusicCamp.backend.comment.dto.CommentCreateReqDto;
 import com.MusicCamp.backend.comment.dto.CommentUpdateReqDto;
 import com.MusicCamp.backend.config.BaseResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,5 +27,11 @@ public class CommentController {
     public BaseResponse<Void> updateComment(@PathVariable Long commentId, @RequestBody CommentUpdateReqDto commentUpdateReqDto){
         commentService.updateComment(commentId,commentUpdateReqDto);
         return BaseResponse.success();
+    }
+
+    @GetMapping("/comment/{postId}")
+    public BaseResponse<List<CommentAllResDto>> getAllComment(@PathVariable Long postId){
+        List<CommentAllResDto> commentAllResDtoList = commentService.getAll(postId);
+        return BaseResponse.success(commentAllResDtoList);
     }
 }

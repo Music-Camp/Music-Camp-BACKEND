@@ -1,5 +1,6 @@
 package com.MusicCamp.backend.comment;
 
+import com.MusicCamp.backend.comment.dto.CommentAllResDto;
 import com.MusicCamp.backend.comment.dto.CommentCreateReqDto;
 import com.MusicCamp.backend.comment.dto.CommentUpdateReqDto;
 import com.MusicCamp.backend.post.Post;
@@ -9,6 +10,8 @@ import com.MusicCamp.backend.user.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -28,5 +31,14 @@ public class CommentService {
     public void updateComment(Long commentId, CommentUpdateReqDto commentUpdateReqDto) {
         Comment comment = commentRepository.findById(commentId).get();
         comment.modifyComment(commentUpdateReqDto);
+    }
+
+
+    public List<CommentAllResDto> getAll(Long postId) {
+        Post post = postRepository.findById(postId).get();
+        List<Comment> commentList = post.getCommentList();
+        List<CommentAllResDto> commentAllResDtoList = commentList.stream().map((eachComment) -> CommentAllResDto.of(eachComment)).toList();
+
+        return commentAllResDtoList;
     }
 }
