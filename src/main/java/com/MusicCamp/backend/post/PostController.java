@@ -42,4 +42,10 @@ public class PostController {
         PostDetailResDto postDetailResDto = postService.getPost(postId);
         return BaseResponse.success(postDetailResDto);
     }
+
+    @DeleteMapping("/post/{postId}")
+    public BaseResponse<Void> deletePost(@PathVariable Long postId){
+        postService.deletePost(postId);
+        return BaseResponse.success();
+    }
 }

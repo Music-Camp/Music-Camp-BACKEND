@@ -43,4 +43,8 @@ public class PostService {
         PostDetailResDto postDetailResDto = PostDetailResDto.of(post);
         return postDetailResDto;
     }
+
+    public void deletePost(Long postId) {
+        postRepository.deleteById(postId);
+    }
 }
