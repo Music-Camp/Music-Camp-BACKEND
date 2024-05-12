@@ -21,7 +21,17 @@ public class Attendance {
 
     private String nickName;
     private String profileUrl;
-
     private Boolean isAttendance;
+
+    public Attendance(User user,Boolean isAttendance){
+           this.user=user;
+           this.nickName=user.getNickname();
+           this.profileUrl= user.getImageUrl();
+           this.isAttendance=isAttendance;
+    }
+
+    public void modify(Boolean isAttendance){
+        this.isAttendance=isAttendance;
+    }
 
 }
