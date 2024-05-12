@@ -19,7 +19,9 @@ public class Attendance {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private Boolean isAttendance;
+    private String nickName;
+    private String profileUrl;
 
+    private Boolean isAttendance;
 
 }
