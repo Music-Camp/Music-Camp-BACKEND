@@ -1,6 +1,6 @@
 package com.MusicCamp.backend.post;
 
-import com.MusicCamp.backend.post.dto.PostAllResDto;
+import com.MusicCamp.backend.post.dto.PostDetailResDto;
 import com.MusicCamp.backend.post.dto.PostCreateReqDto;
 import com.MusicCamp.backend.post.dto.PostDetailResDto;
 import com.MusicCamp.backend.post.dto.PostUpdateReqDto;
@@ -32,10 +32,10 @@ public class PostService {
         post.modifyPost(postUpdateReqDto);
     }
 
-    public List<PostAllResDto> getAllPost() {
+    public List<PostDetailResDto> getAllPost() {
         List<Post> allPostList = postRepository.findAll();
-        List<PostAllResDto> postAllResDtosList = allPostList.stream().map((eachPost) -> PostAllResDto.of(eachPost)).toList();
-        return postAllResDtosList;
+        List<PostDetailResDto> PostDetailResDtosList = allPostList.stream().map((eachPost) -> PostDetailResDto.of(eachPost)).toList();
+        return PostDetailResDtosList;
     }
 
     public PostDetailResDto getPost(Long postId) {
