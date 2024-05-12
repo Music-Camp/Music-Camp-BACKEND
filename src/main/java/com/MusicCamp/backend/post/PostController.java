@@ -2,7 +2,7 @@ package com.MusicCamp.backend.post;
 
 
 import com.MusicCamp.backend.config.BaseResponse;
-import com.MusicCamp.backend.post.dto.PostAllResDto;
+import com.MusicCamp.backend.post.dto.PostDetailResDto;
 import com.MusicCamp.backend.post.dto.PostCreateReqDto;
 import com.MusicCamp.backend.post.dto.PostDetailResDto;
 import com.MusicCamp.backend.post.dto.PostUpdateReqDto;
@@ -35,15 +35,15 @@ public class PostController {
     }
 
     @GetMapping("/post")
-    public BaseResponse<List<PostAllResDto>> getAllPost(){
-        List<PostAllResDto> postAllResDtosList = postService.getAllPost();
-        return BaseResponse.success(postAllResDtosList);
+    public BaseResponse<List<PostDetailResDto>> getAllPost(){
+        List<PostDetailResDto> PostDetailResDtosList = postService.getAllPost();
+        return BaseResponse.success(PostDetailResDtosList);
     }
 
     @GetMapping("/post/{postId}")
     public BaseResponse<PostDetailResDto> getPost(@PathVariable Long postId){
-        PostDetailResDto postDetailResDto = postService.getPost(postId);
-        return BaseResponse.success(postDetailResDto);
+        PostDetailResDto PostDetailResDto = postService.getPost(postId);
+        return BaseResponse.success(PostDetailResDto);
     }
 
     @DeleteMapping("/post/{postId}")

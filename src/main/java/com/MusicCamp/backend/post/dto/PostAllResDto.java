@@ -7,6 +7,10 @@ import lombok.Getter;
 
 import java.util.List;
 
+
+/**
+ 프론트 요청에 따라 전체 조회에서도 PostAllResDto 대신 PostDetailResDto를 사용하기로 함-24/5/12일-
+ **/
 @Getter
 @AllArgsConstructor
 public class PostAllResDto {
